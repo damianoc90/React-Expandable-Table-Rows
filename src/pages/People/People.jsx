@@ -1,3 +1,4 @@
+// eslint-disable
 import React, { useEffect, useState } from 'react';
 import CollapsibleTable from '../../components/CollapsibleTable/CollapsibleTable';
 import retrievePeoples from '../../services/dataService';
@@ -14,10 +15,10 @@ const People = () => {
     });
   }, []);
 
-/**
- * Add an unique id to dataset rows.
- * @param {*} data The original dataset.
- */
+  /**
+   * Add an unique id to dataset rows.
+   * @param {*} data The original dataset.
+   */
   const addUniqueId = data => {
     Object.keys(data).forEach(key => {
       data[key]['_id'] = uuidv4();
