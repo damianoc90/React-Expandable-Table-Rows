@@ -11,3 +11,7 @@ Run `npm install` or `yarn install`
 1) Run `npm run start`
 2) Browse the application at http://localhost:3000/
 3) Enjoy!
+
+## Change mocked data
+
+If you want to change the example data, just change the content of `public/example-data.json`
