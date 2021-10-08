@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #e5e5e5;
+  font-weight: 300;
+  display: flex;
+  margin: 24px;
+}
+
+#root {
+  width: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  background: #2c64b7;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  padding: 16px 0;
+  font-weight: bold;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: initial;
+  background: #b2b2b2;
+}
