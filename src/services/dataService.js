@@ -1,4 +1,4 @@
-const retrieveData = () =>
+const retrievePeoples = () =>
     fetch('example-data.json', {
         headers: {
             'Content-Type': 'application/json',
@@ -8,4 +8,4 @@ const retrieveData = () =>
         response.json()
     );
 
-export default retrieveData;
+export default retrievePeoples;

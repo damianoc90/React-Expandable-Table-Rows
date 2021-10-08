@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import CollapsibleTable from '../../components/CollapsibleTable/CollapsibleTable';
-import retrieveData from '../../services/dataService';
+import retrievePeoples from '../../services/dataService';
 import './People.scss';
 
 const People = () => {
   const [tableData, setTableData] = useState([]);
+  const uuidv4 = require('uuid/v4');
 
   useEffect(() => {
-    retrieveData().then(response => {
+    retrievePeoples().then(response => {
       addUniqueId(response);
       setTableData(response);
     });
   }, []);
 
-  const uuidv4 = require('uuid/v4');
-
+/**
+ * Add an unique id to dataset rows.
+ * @param {*} data The original dataset.
+ */
   const addUniqueId = data => {
     Object.keys(data).forEach(key => {
       data[key]['_id'] = uuidv4();
@@ -26,13 +29,22 @@ const People = () => {
     });
   };
 
-  const deleteRow = (rowId) => {
+  /**
+   * Delete a row.
+   * @param {*} rowId The row id to delete.
+   */
+  const deleteRow = rowId => {
     const newTableData = [...tableData];
     deleteRecursive(newTableData, rowId);
     checkEmptyChild(newTableData);
     setTableData(newTableData);
   };
 
+  /**
+   * Used by deleteRow function.
+   * @param {*} data The starting dataset.
+   * @param {*} id The row id to delete.
+   */
   const deleteRecursive = (data, id) => {
     data.forEach((row, index) => {
       if (row._id === id) {
@@ -45,8 +57,12 @@ const People = () => {
     });
   };
 
-  const checkEmptyChild = (data) => {
-    data.forEach((row, index) => {
+  /**
+   * Normilize the dataset by removing the empty child.
+   * @param {*} data The starting dataset.
+   */
+  const checkEmptyChild = data => {
+    data.forEach(row => {
       if (!!row.kids && Object.values(row.kids).length && !row.kids[Object.keys(row.kids)[0]].records.length) {
         row.kids = {};
       }
