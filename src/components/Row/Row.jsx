@@ -48,7 +48,7 @@ const Row = ({ row, deleteRow }) => {
         </StyledCell>
       </TableRow>
       {
-        hasChildren() &&
+        open && hasChildren() &&
         <TableRow>
           <StyledCell style={{ paddingBottom: 0, paddingTop: 0, borderBottom: 'none' }} colSpan={Object.keys(row.data).length + 2}>
             <Collapse in={open} timeout="auto" unmountOnExit>
