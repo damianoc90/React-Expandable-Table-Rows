@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TableRowInterface } from '../../models/table-row.interface';
 import CollapsibleTable from '../CollapsibleTable/CollapsibleTable';
 import './Row.scss';
@@ -20,6 +20,10 @@ const StyledCell = styled(TableCell)(() => ({
 const Row: React.FC<Props> = ({ row, deleteRow }) => {
   const [open, setOpen] = useState(false);
   const hasChildren = () => Object.keys(row.kids).length > 0 && row.kids[Object.keys(row.kids)[0]].records.length > 0;
+
+  useEffect(() => {
+    setOpen(false);
+  }, [row]);
 
   return (
     <React.Fragment>
