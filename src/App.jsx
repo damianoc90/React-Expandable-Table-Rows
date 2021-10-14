@@ -1,8 +1,8 @@
 import './App.scss';
-import People from './pages/People/People';
+import DataViewer from './pages/DataViewer/DataViewer';
 
 const App = () => (
-  <People />
+  <DataViewer />
 );
 
 export default App;

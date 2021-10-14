@@ -5,8 +5,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { TableRowInterface } from '../../models/table-row.interface';
 import Row from '../Row/Row';
 import './CollapsibleTable.scss';
 
@@ -16,7 +16,7 @@ const StyledTableCell = styled(TableCell)(() => ({
   }
 }));
 
-const CollapsibleTable = ({ tableData, deleteRow }) => {
+const CollapsibleTable: React.FC<Props> = ({ tableData, deleteRow }) => {
   const getColumns = () => tableData && tableData.length
     ? Object.keys(tableData[0].data)
     : [];
@@ -50,9 +50,9 @@ const CollapsibleTable = ({ tableData, deleteRow }) => {
   );
 };
 
-CollapsibleTable.propTypes = {
-  tableData: PropTypes.array,
-  deleteRow: PropTypes.func
+type Props = {
+  tableData: TableRowInterface[],
+  deleteRow: (id: string) => void
 };
 
 export default CollapsibleTable;

@@ -8,8 +8,8 @@ import { styled } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { TableRowInterface } from '../../models/table-row.interface';
 import CollapsibleTable from '../CollapsibleTable/CollapsibleTable';
 import './Row.scss';
 
@@ -17,38 +17,41 @@ const StyledCell = styled(TableCell)(() => ({
   backgroundColor: '#ffffff'
 }));
 
-const Row = ({ row, deleteRow }) => {
+const Row: React.FC<Props> = ({ row, deleteRow }) => {
   const [open, setOpen] = useState(false);
   const hasChildren = () => Object.keys(row.kids).length > 0 && row.kids[Object.keys(row.kids)[0]].records.length > 0;
 
   return (
     <React.Fragment>
-      <TableRow>
-        <StyledCell>
+      {
+        row &&
+        <TableRow>
+          <StyledCell>
+            {
+              hasChildren() &&
+              <IconButton
+                size="small"
+                onClick={() => setOpen(!open)}>
+                {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+              </IconButton>
+            }
+          </StyledCell>
           {
-            hasChildren() &&
+            Object.keys(row.data).map((key, index) =>
+              <StyledCell key={index}>{row.data[key]}</StyledCell>
+            )
+          }
+          <StyledCell>
             <IconButton
               size="small"
-              onClick={() => setOpen(!open)}>
-              {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+              onClick={() => deleteRow(row._id)}>
+              <CloseIcon />
             </IconButton>
-          }
-        </StyledCell>
-        {
-          Object.keys(row.data).map((key, index) =>
-            <StyledCell key={index}>{row.data[key]}</StyledCell>
-          )
-        }
-        <StyledCell>
-          <IconButton
-            size="small"
-            onClick={() => deleteRow(row._id)}>
-            <CloseIcon />
-          </IconButton>
-        </StyledCell>
-      </TableRow>
+          </StyledCell>
+        </TableRow>
+      }
       {
-        open && hasChildren() &&
+        row && open && hasChildren() &&
         <TableRow>
           <StyledCell style={{ paddingBottom: 0, paddingTop: 0, borderBottom: 'none' }} colSpan={Object.keys(row.data).length + 2}>
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -66,9 +69,9 @@ const Row = ({ row, deleteRow }) => {
   );
 };
 
-Row.propTypes = {
-  row: PropTypes.object,
-  deleteRow: PropTypes.func
+type Props = {
+  row: TableRowInterface,
+  deleteRow: (id: string) => void
 };
 
 export default Row;
