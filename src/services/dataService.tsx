@@ -1,6 +1,10 @@
 import { TableRowInterface } from "../models/table-row.interface";
 const uuidv4 = require('uuid/v4');
 
+/**
+ * Return data from example-data.json file.
+ * @returns The mocked data.
+ */
 export const retrieveData = () =>
   fetch('example-data.json', {
     headers: {
@@ -47,7 +51,7 @@ export const deleteItem = (data: TableRowInterface[], id: string) => {
 };
 
 /**
- * Normilize the dataset by removing the empty child.
+ * Normalize the dataset by removing the empty child.
  * @param {*} data The starting dataset.
  */
 export const checkEmptyChild = (data: TableRowInterface[]) => {
