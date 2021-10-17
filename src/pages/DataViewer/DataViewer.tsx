@@ -4,11 +4,12 @@ import CollapsibleTable from '../../components/CollapsibleTable/CollapsibleTable
 import { TableRowInterface } from '../../models/table-row.interface';
 import './DataViewer.scss';
 import { deleteItem, checkEmptyChild, retrieveData } from '../../services/dataService';
+import React from 'react';
 
 const DataViewer = () => {
   const [tableData, setTableData] = useState([] as TableRowInterface[]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     retrieveData()
       .then((response: TableRowInterface[]) => {
         setTableData(response);
@@ -28,7 +29,7 @@ const DataViewer = () => {
 
   return (
     <div className="DataViewer">
-      <CollapsibleTable tableData={tableData} deleteRow={deleteRow} />
+      <CollapsibleTable data-testid="collapsible-table" tableData={tableData} deleteRow={deleteRow} />
     </div>
   );
 };

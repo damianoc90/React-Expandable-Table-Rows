@@ -10,7 +10,7 @@ import { TableRowInterface } from '../../models/table-row.interface';
 import Row from '../Row/Row';
 import './CollapsibleTable.scss';
 
-const StyledTableCell = styled(TableCell)(() => ({
+export const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#f1f1f1',
   }
