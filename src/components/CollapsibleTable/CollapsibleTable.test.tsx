@@ -5,7 +5,6 @@ import { TableRowInterface } from '../../models/table-row.interface';
 import Row from '../Row/Row';
 import CollapsibleTable, { StyledTableCell } from './CollapsibleTable';
 
-
 afterEach(() => {
   cleanup();
 });

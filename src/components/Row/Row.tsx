@@ -34,6 +34,7 @@ const Row: React.FC<Props> = ({ row, deleteRow }) => {
             {
               hasChildren() &&
               <IconButton
+                data-test="toggle-row-icon"
                 size="small"
                 onClick={() => setOpen(!open)}>
                 {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
@@ -47,6 +48,7 @@ const Row: React.FC<Props> = ({ row, deleteRow }) => {
           }
           <StyledCell>
             <IconButton
+              data-test="delete-icon"
               size="small"
               onClick={() => deleteRow(row._id)}>
               <CloseIcon />

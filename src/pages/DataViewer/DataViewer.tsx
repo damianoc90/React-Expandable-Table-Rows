@@ -29,7 +29,7 @@ const DataViewer = () => {
 
   return (
     <div className="DataViewer">
-      <CollapsibleTable data-testid="collapsible-table" tableData={tableData} deleteRow={deleteRow} />
+      <CollapsibleTable tableData={tableData} deleteRow={deleteRow} />
     </div>
   );
 };
