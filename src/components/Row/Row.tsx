@@ -80,4 +80,9 @@ type Props = {
   deleteRow: (id: string) => void
 };
 
-export default Row;
+const shouldRenderComponent = ((prev: Props, next: Props) => {
+  return prev.row.data._id !== next.row.data._id
+    || prev.row.kids.length !== next.row.kids.length;
+});
+
+export default React.memo(Row, shouldRenderComponent);

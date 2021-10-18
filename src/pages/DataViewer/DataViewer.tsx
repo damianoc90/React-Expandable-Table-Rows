@@ -1,10 +1,9 @@
 // eslint-disable
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CollapsibleTable from '../../components/CollapsibleTable/CollapsibleTable';
 import { TableRowInterface } from '../../models/table-row.interface';
+import { checkEmptyChild, deleteItem, retrieveData } from '../../services/dataService';
 import './DataViewer.scss';
-import { deleteItem, checkEmptyChild, retrieveData } from '../../services/dataService';
-import React from 'react';
 
 const DataViewer = () => {
   const [tableData, setTableData] = useState([] as TableRowInterface[]);
