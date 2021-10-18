@@ -41,24 +41,24 @@ const mockedDataWithChild: TableRowInterface = {
 };
 const deleteRow = jest.fn();
 
+let container, tableRow, cells, cellLength, open;
+
+beforeEach(() => {
+  container = shallow(<Row row={mockedDataWithChild} deleteRow={deleteRow} />);
+  tableRow = container.find(TableRow);
+  cells = tableRow.find(StyledCell);
+  cellLength = Object.keys(mockedDataWithChild.data).length + 2;
+
+  const setOpen = jest.fn();
+  open = false;
+  jest.spyOn(React, 'useState').mockImplementation(() => [open, setOpen]);
+});
+
 afterEach(() => {
   cleanup();
 });
 
 describe('Row', () => {
-  let container, tableRow, cells, cellLength, open;
-
-  beforeEach(() => {
-    container = shallow(<Row row={mockedDataWithChild} deleteRow={deleteRow} />);
-    tableRow = container.find(TableRow);
-    cells = tableRow.find(StyledCell);
-    cellLength = Object.keys(mockedDataWithChild.data).length + 2;
-
-    const setOpen = jest.fn();
-    open = false;
-    jest.spyOn(React, 'useState').mockImplementation(() => [open, setOpen]);
-  });
-
   test('should render Row component', () => {
     expect(tableRow).toBeTruthy();
     expect(container.find(Row)).toBeTruthy();
@@ -74,21 +74,6 @@ describe('Row', () => {
 });
 
 describe('Row: with child', () => {
-  const deleteRow = jest.fn();
-
-  let container, tableRow, cells, cellLength, open;
-
-  beforeEach(() => {
-    container = shallow(<Row row={mockedDataWithChild} deleteRow={deleteRow} />);
-    tableRow = container.find(TableRow);
-    cells = tableRow.find(StyledCell);
-    cellLength = Object.keys(mockedDataWithChild.data).length + 2;
-
-    const setOpen = jest.fn();
-    open = false;
-    jest.spyOn(React, 'useState').mockImplementation(() => [open, setOpen]);
-  });
-
   test('should render correctly the number of cells based on provided data', () => {
     expect(cells).toHaveLength(cellLength);
   });
@@ -144,9 +129,6 @@ describe('Row: without child', () => {
     },
     kids: {}
   };
-  const deleteRow = ((id: string) => { });
-
-  let container;
 
   beforeEach(() => {
     container = shallow(<Row row={mockedDataWithoutChild} deleteRow={deleteRow} />);
