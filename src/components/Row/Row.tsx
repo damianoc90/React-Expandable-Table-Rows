@@ -18,11 +18,11 @@ export const StyledCell = styled(TableCell)(() => ({
 }));
 
 const Row: React.FC<Props> = ({ row, deleteRow }) => {
-  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const hasChildren = () => Object.keys(row.kids).length > 0 && row.kids[Object.keys(row.kids)[0]].records.length > 0;
 
   useEffect(() => {
-    setOpen(false);
+    setExpanded(false);
   }, [row]);
 
   return (
@@ -36,8 +36,8 @@ const Row: React.FC<Props> = ({ row, deleteRow }) => {
               <IconButton
                 data-test="toggle-row-icon"
                 size="small"
-                onClick={() => setOpen(!open)}>
-                {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+                onClick={() => setExpanded(!expanded)}>
+                {expanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
               </IconButton>
             }
           </StyledCell>
@@ -57,10 +57,10 @@ const Row: React.FC<Props> = ({ row, deleteRow }) => {
         </TableRow>
       }
       {
-        row && open && hasChildren() &&
+        row && expanded && hasChildren() &&
         <TableRow>
           <StyledCell style={{ paddingBottom: 0, paddingTop: 0, borderBottom: 'none' }} colSpan={Object.keys(row.data).length + 2}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
               <Box sx={{ margin: 2 }}>
                 <Typography variant="subtitle1" gutterBottom component="div" sx={{ fontWeight: 'bold' }}>
                   {Object.keys(row.kids)[0].toUpperCase()}
