@@ -38,7 +38,7 @@ const CollapsibleTable: React.FC<Props> = ({ tableData, deleteRow }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {tableData.map((row, index) => (
+              {tableData.map(row => (
                 <Row key={row._id} row={row} deleteRow={deleteRow} />
               ))}
             </TableBody>
