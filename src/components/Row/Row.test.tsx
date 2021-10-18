@@ -64,7 +64,6 @@ describe('Row', () => {
     expect(container.find(Row)).toBeTruthy();
   });
 
-
   test('should call deleteRow function (with _id param) when user click the delete icon', () => {
     const deleteButton = container.find(`[data-test="delete-icon"]`);
     deleteButton.simulate('click');

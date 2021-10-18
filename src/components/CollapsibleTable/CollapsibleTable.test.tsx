@@ -29,11 +29,7 @@ describe('CollapsibleTable: with data', () => {
 
   const deleteRow = ((id: string) => { });
 
-  let container;
-
-  beforeEach(() => {
-    container = shallow(<CollapsibleTable tableData={mockedData} deleteRow={deleteRow} />);
-  });
+  const container = shallow(<CollapsibleTable tableData={mockedData} deleteRow={deleteRow} />);
 
   test('should renders CollapsibleTable component', () => {
     expect(container.find(CollapsibleTable)).toBeTruthy();
@@ -72,13 +68,10 @@ describe('CollapsibleTable: with data', () => {
 });
 
 describe('CollapsibleTable: empty data', () => {
-  let container;
   const mockedData: TableRowInterface[] = [];
   const deleteRow = ((id: string) => { });
 
-  beforeEach(() => {
-    container = shallow(<CollapsibleTable tableData={mockedData} deleteRow={deleteRow} />);
-  });
+  const container = shallow(<CollapsibleTable tableData={mockedData} deleteRow={deleteRow} />);
 
   test('should renders empty text', () => {
     const noRowsText = container.find('.CollapsibleTable__no-rows');
