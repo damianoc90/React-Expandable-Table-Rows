@@ -1,6 +1,4 @@
-# GraphAware
-GraphAware - Frontend Technical Test @ Damiano Cancemi
-
+# React Expandable Table Rows
 
 ## Installation
 
